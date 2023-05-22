@@ -1,7 +1,43 @@
 body {
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: #6e6ce9;
 }
+
+.nav-bar {
+    background-color: #848bf1;
+    margin-top: 1%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo {
+
+  }
+
+  .nav-list {
+    width: 50%;
+    margin-top: 3px;
+  }
+  
+  .nav-items {
+    list-style: none;
+    color: white;
+    display: flex;
+    justify-content:flex-end;
+    gap: 3rem;
+    margin-top: 15px;
+    margin-right: 5rem;
+  }
+  
+  .nav-items a
+   {
+    text-decoration: none;
+    color: black;
+  }
+  
+
+/* .icon {
+  background: url("");
+} */
+
+
