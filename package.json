@@ -1,0 +1,44 @@
+{
+  "name": "meals-api-template",
+  "version": "1.0.0",
+  "description": "Showcase of API interactivity, dinamically render DOM and testing.",
+  "main": "index.js",
+  "dependencies": {
+    "@egjs/flicking": "^4.10.7",
+    "panzoom": "^9.4.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^29.5.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.27.5",
+    "hint": "^7.1.8",
+    "html-webpack-plugin": "^5.5.1",
+    "jest": "^29.5.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.21.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "scripts": {
+    "test": "jest",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lordksix/Meals-API-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lordksix/Meals-API-template/issues"
+  },
+  "homepage": "https://github.com/lordksix/Meals-API-template#readme"
+}
