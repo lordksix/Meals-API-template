@@ -1,7 +1,70 @@
-body {
-  padding: 0;
-  margin: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #6e6ce9;
+:root {
+  --svg-side: clamp(16px, (100vw - 320px) * 1000, clamp(20px, (100vw - 640px) * 1000, clamp(25px, (100vw - 1280px) * 1000, 30px)));
+  --font-size: calc(var(--svg-side) * 0.8);
 }
+
+body {
+  background-color: #6e6ce9;
+  font-family: 'Pangolin', 'Merriweather', serif, cursive;
+}
+
+.nav-bar {
+  background-color: #848bf1;
+  margin-top: 1%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .logo {
+
+} */
+
+.nav-list {
+  width: 50%;
+  margin-top: 3px;
+}
+
+.nav-items {
+  list-style: none;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  gap: 3rem;
+  margin-top: 15px;
+  margin-right: 5rem;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: black;
+}
+
+.extremity {
+  padding-block: 10px;
+  padding-inline: 20px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.svg {
+  display: flex;
+  align-items: center;
+}
+
+.footer-row {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-row svg {
+  height: var(--svg-side);
+  width: var(--svg-side);
+}
+
+/* .icon {
+  background: url("");
+} */
+
+/* LEts not use background to SVGs. We could use svg tag in the html file */
