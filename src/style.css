@@ -1,3 +1,8 @@
+:root {
+  --svg-side: clamp(16px, (100vw - 320px) * 1000, clamp(20px, (100vw - 640px) * 1000, clamp(25px, (100vw - 1280px) * 1000, 30px)));
+  --font-size: calc(var(--svg-side) * 0.8);
+}
+
 body {
   background-color: #6e6ce9;
 }
@@ -32,6 +37,24 @@ body {
 .nav-items a {
   text-decoration: none;
   color: black;
+}
+
+.extremity {
+  padding-block: 10px;
+  padding-inline: 20px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.svg {
+  display: flex;
+  align-items: center;
+}
+
+.footer-row svg {
+  height: var(--svg-side);
+  width: var(--svg-side);
 }
 
 /* .icon {
