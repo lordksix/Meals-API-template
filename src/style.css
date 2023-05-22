@@ -3,41 +3,39 @@ body {
 }
 
 .nav-bar {
-    background-color: #848bf1;
-    margin-top: 1%;
-    padding: 2%;
-    display: flex;
-    justify-content: space-between;
-  }
+  background-color: #848bf1;
+  margin-top: 1%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .logo {
+/* .logo {
 
-  }
+} */
 
-  .nav-list {
-    width: 50%;
-    margin-top: 3px;
-  }
-  
-  .nav-items {
-    list-style: none;
-    color: white;
-    display: flex;
-    justify-content:flex-end;
-    gap: 3rem;
-    margin-top: 15px;
-    margin-right: 5rem;
-  }
-  
-  .nav-items a
-   {
-    text-decoration: none;
-    color: black;
-  }
-  
+.nav-list {
+  width: 50%;
+  margin-top: 3px;
+}
+
+.nav-items {
+  list-style: none;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  gap: 3rem;
+  margin-top: 15px;
+  margin-right: 5rem;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: black;
+}
 
 /* .icon {
   background: url("");
 } */
 
-
+/* LEts not use background to SVGs. We could use svg tag in the html file */
