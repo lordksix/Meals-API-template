@@ -25,7 +25,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: './build',
+    // contentBase: "./build",
     open: true,
   },
   module: {
