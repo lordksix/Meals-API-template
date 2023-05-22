@@ -28,7 +28,7 @@ module.exports = {
     contentBase: './build',
     open: true,
   },
-    module: {
+  module: {
     rules: [
       {
         test: /\.css$/i,
