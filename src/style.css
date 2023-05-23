@@ -1,28 +1,46 @@
 :root {
   --svg-side: clamp(16px, (100vw - 320px) * 1000, clamp(20px, (100vw - 640px) * 1000, clamp(25px, (100vw - 1280px) * 1000, 30px)));
   --font-size: calc(var(--svg-side) * 0.8);
+  --n: 3;
+  --w: 780px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style-type: none;
 }
 
 body {
   background-color: #6e6ce9;
   font-family: 'Pangolin', 'Merriweather', serif, cursive;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  padding: 5px;
 }
 
 .nav-bar {
   background-color: #848bf1;
-  margin-top: 1%;
   padding: 2%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-/* .logo {
-
-} */
+.logo {
+  height: calc(var(--svg-side) * 2);
+}
 
 .nav-list {
-  width: 50%;
-  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .nav-items {
@@ -30,9 +48,10 @@ body {
   color: white;
   display: flex;
   justify-content: flex-end;
-  gap: 3rem;
+  flex-wrap: wrap;
+  gap: 2rem;
   margin-top: 15px;
-  margin-right: 5rem;
+  margin-right: 3rem;
 }
 
 .nav-items a {
@@ -49,8 +68,7 @@ body {
 }
 
 .svg {
-  display: flex;
-  align-items: center;
+  margin-block: auto;
 }
 
 .footer-row {
@@ -58,13 +76,68 @@ body {
   gap: 10px;
 }
 
+.app-item svg,
 .footer-row svg {
   height: var(--svg-side);
   width: var(--svg-side);
 }
 
-/* .icon {
-  background: url("");
-} */
+main {
+  height: auto;
+  flex-grow: 1;
+}
 
-/* LEts not use background to SVGs. We could use svg tag in the html file */
+#app-ctn {
+  display: grid;
+  column-gap: 30px;
+  row-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(100%/(var(--n) + 1) + 0.1%, (var(--w) - 100vw) * 1000, 100%), 3fr));
+}
+
+.app-item {
+  padding: 5%;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.app-img {
+  width: 100%;
+  height: auto;
+}
+
+.app-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 5%;
+}
+
+.app-div-btn {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 10%;
+}
+
+.app-like-text {
+  text-align: center;
+}
+
+.app-like-svg {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.app-btn {
+  padding-inline: 10px;
+  padding-block: 5px;
+  z-index: 1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.app-btn:hover {
+  background-color: rgb(114, 46, 46);
+}
