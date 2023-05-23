@@ -21,7 +21,7 @@ const createItem = (elem, classes, mealApi, xlink, likeApi) => {
   return itemElem;
 };
 
-const createList = (elem, classes, mealApiArr, xlink, likeApiArr) => {
+const createList = async (elem, classes, mealApiArr, xlink, likeApiArr) => {
   const docFrag = document.createDocumentFragment();
   mealApiArr.forEach((mealApi, n) => {
     const element = createItem(elem, classes, mealApi, xlink, likeApiArr[n]);
