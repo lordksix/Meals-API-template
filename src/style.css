@@ -3,9 +3,19 @@
   --font-size: calc(var(--svg-side) * 0.8);
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #6e6ce9;
   font-family: 'Pangolin', 'Merriweather', serif, cursive;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  padding: 5px;
 }
 
 .nav-bar {
@@ -62,8 +72,7 @@ body {
   width: var(--svg-side);
 }
 
-/* .icon {
-  background: url("");
-} */
-
-/* LEts not use background to SVGs. We could use svg tag in the html file */
+main {
+  height: auto;
+  flex-grow: 1;
+}
