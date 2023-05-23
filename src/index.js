@@ -10,6 +10,7 @@ const navItem = document.querySelectorAll('.nav-items a');
 navItem.forEach((link) => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
+    navItem.forEach((navItem) => navItem.classList.remove('active'));
     link.classList.add('active');
     printList(e);
   });
