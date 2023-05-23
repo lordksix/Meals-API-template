@@ -10,19 +10,19 @@ body {
 
 .nav-bar {
   background-color: #848bf1;
-  margin-top: 1%;
   padding: 2%;
   display: flex;
   justify-content: space-between;
 }
 
-/* .logo {
-
-} */
+.logo {
+  height: calc(var(--svg-side) * 2);
+}
 
 .nav-list {
-  width: 50%;
-  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-items {
@@ -49,8 +49,7 @@ body {
 }
 
 .svg {
-  display: flex;
-  align-items: center;
+  margin-block: auto;
 }
 
 .footer-row {
