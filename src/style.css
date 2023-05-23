@@ -1,8 +1,6 @@
 :root {
   --svg-side: clamp(16px, (100vw - 320px) * 1000, clamp(20px, (100vw - 640px) * 1000, clamp(25px, (100vw - 1280px) * 1000, 30px)));
   --font-size: calc(var(--svg-side) * 0.8);
-  --n: 3;
-  --w: 780px;
 }
 
 * {
@@ -87,11 +85,26 @@ main {
   flex-grow: 1;
 }
 
+.active {
+  font-weight: bolder;
+}
+
 #app-ctn {
+  --n: 2;
+  --w: 350px;
+  --n1: 3;
+  --w1: 700px;
+  --n2: 4;
+  --w2: 1050px;
+
   display: grid;
   column-gap: 30px;
   row-gap: 30px;
-  grid-template-columns: repeat(auto-fit, minmax(clamp(100%/(var(--n) + 1) + 0.1%, (var(--w) - 100vw) * 1000, 100%), 3fr));
+  grid-template-columns: repeat(auto-fit, minmax(clamp(clamp(clamp(100%/(var(--n2) + 1) + 0.1%, (var(--w2) - 100vw) * 1000, 100%/(var(--n1) + 1) + 0.1%), (var(--w1) - 100vw) * 1000, 100%/(var(--n) + 1) + 0.1%), (var(--w) - 100vw) * 1000, 100%), 3fr));
+  padding-block: 50px;
+  padding-inline: 20px;
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 .app-item {
@@ -99,6 +112,8 @@ main {
   display: flex;
   flex-flow: column;
   gap: 10px;
+  background-color: #848bf1;
+  border-radius: 10px;
 }
 
 .app-img {
@@ -114,9 +129,10 @@ main {
 }
 
 .app-div-btn {
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15%;
+  justify-content: center;
 }
 
 .app-like-text {
