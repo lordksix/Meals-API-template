@@ -42,7 +42,7 @@ const createNS = (href) => {
   const xlink = href.split('#');
   const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
   use.setAttribute('href', `${href}`);
-  use.classList.add(`${xlink[1]}-use`);
+  use.classList.add(xlink[1]);
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.appendChild(use);
   svg.classList.add(xlink[1]);
