@@ -4,7 +4,7 @@ import {
   printList,
 } from './modules/utils.js';
 
-const navItem = document.querySelectorAll('.nav-items a');
+const navItem = document.querySelectorAll('.query a');
 
 // Select section to show
 navItem.forEach((link) => {

@@ -27,17 +27,25 @@ const findLikes = async (id, invArr) => {
   return 0;
 };
 
+const updateLikesDOM = async (node, likes) => {
+  const likeText = node.querySelector('.app-like-text');
+  likeText.textContent = `${likes} like${likes > 1 ? 's' : ''}`;
+  const useVSG = node.querySelector('use');
+  const svgVSG = node.querySelector('svg');
+  useVSG.classList.add('likes');
+  svgVSG.classList.add('likes');
+  useVSG.setAttribute('href', '../asset/resource/icons.svg#heart-like-red');
+};
+
 const createLike = async (event) => {
-  if (event.target.classList.contains('heart-like')) {
+  if (event.target.classList.contains('heart-like') && !event.target.classList.contains('likes')) {
     const currentID = event.currentTarget.dataset.id;
     const url = createApiInvURL(baseurlInvolvement, parameterIDApp, parameterLikeApp);
     await handlePost(url, await likesJson(currentID));
     const dataResponseInv = await handleGETAPI(url);
     const qtyLikes = await findLikes(currentID, dataResponseInv);
-    const likeText = event.target.parentNode.parentNode.querySelector('.app-like-text');
-    likeText.textContent = `${qtyLikes} like${qtyLikes > 1 ? 's' : ''}`;
-    const useVSG = event.target.querySelector('use');
-    useVSG.setAttribute('href', '../asset/resource/icons.svg#heart-like-red');
+    const prtNde = event.target.parentNode.parentNode;
+    await updateLikesDOM(prtNde, await qtyLikes);
   }
 };
 
