@@ -18,7 +18,7 @@ const fetchDataJSON = async (URL) => {
  * Event handler for a form submit event.
  * @param {SubmitEvent} event
  */
-const handleRefreshScores = async (event, url) => {
+const handleGETAPIevent = async (event, url) => {
   event.preventDefault();
   try {
     const responseData = await fetchDataJSON(url);
@@ -31,7 +31,7 @@ const handleRefreshScores = async (event, url) => {
 /**
  * Event handler for a form submit event.
  */
-const loadRefreshScores = async (url) => {
+const handleGETAPI = async (url) => {
   try {
     const responseData = await fetchDataJSON(url);
     return responseData;
@@ -41,5 +41,5 @@ const loadRefreshScores = async (url) => {
 };
 
 export {
-  fetchDataJSON, handleRefreshScores, loadRefreshScores,
+  fetchDataJSON, handleGETAPIevent, handleGETAPI,
 };
