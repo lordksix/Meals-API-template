@@ -4,7 +4,7 @@ const createApiMealURL = (baseurl, queryKey, queryValue) => {
 };
 
 const createApiInvURL = (baseurl, id = false, endpoint = false) => {
-  const url = `${baseurl}${id || false}${endpoint || false}`;
+  const url = `${baseurl}${id}${endpoint}`;
   return url;
 };
 

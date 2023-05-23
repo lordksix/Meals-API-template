@@ -1,58 +1,47 @@
 import {
   createApiMealURL, createApiInvURL,
 } from './createURLAPI.js';
-import { createList, createElementDefault } from './ListItemMod.js';
+import { createItem } from './ListItemMod.js';
 import { handleScoreFormSubmit } from './PostForm.js';
 import { handleGETAPI } from './GetAPI.js';
-
-const xlink = '../asset/resource/icons.svg#heart-like';
-
-const classes = [];
-const likeAPI = [
-  1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3,
-  1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3,
-  1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3,
-  1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3,
-];
-
-const baseurlFilterMeal = 'https://www.themealdb.com/api/json/v1/1/filter.php?';
-const baseurllookupMeal = 'https://www.themealdb.com/api/json/v1/1/lookup.php?';
-const parameterMealID = 'i';
-const parameterMealCat = 'c';
-
-/* const baseurlInvolvement = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/';
-const parameterLikeApp = 'likes/';
-const parameterCommApp = 'comments/';
-const parameterReservApp = 'reservations/';
-const parameterIDApp = 'Wbe3IznQ2LQoFPHmVrwp/'; */
+import {
+  classes, baseurlFilterMeal, baseurllookupMeal, parameterMealID, parameterMealCat,
+  xlink, baseurlInvolvement, parameterLikeApp, parameterCommApp, parameterReservApp,
+  parameterIDApp,
+} from './const.js';
 
 const appendResponsePara = async (node) => {
   const showResponseForm = document.getElementById('formFeedback');
   showResponseForm.textContent = node;
 };
 
-const createMealArr = async (dataArr) => {
-  const mealArr = [];
+const findLikes = async (mealData, invArr) => {
+  console.log(mealData[0].idMeal);
+};
+
+const getMealsAPIResponse = async (data) => {
+  const mealIDURL = createApiMealURL(baseurllookupMeal, parameterMealID, data.idMeal);
+  const dataResponse = await handleGETAPI(mealIDURL);
+  return dataResponse.meals;
+};
+
+const appendItems = async (dataArr, invArr) => {
+  const appCtn = document.getElementById('app-ctn');
+  appCtn.innerHTML = '';
   dataArr.forEach(async (data) => {
-    const mealIDURL = await createApiMealURL(baseurllookupMeal, parameterMealID, data.idMeal);
-    const dataResponse = await handleGETAPI(mealIDURL);
-    mealArr.push(dataResponse.meals);
+    const mealData = await getMealsAPIResponse(data);
+    const mealFrag = await createItem('li', classes, mealData, xlink, await findLikes(mealData, invArr));
+    appCtn.appendChild(mealFrag);
   });
-  return mealArr;
 };
 
 const printList = async (event) => {
   const mealCatURL = createApiMealURL(baseurlFilterMeal, parameterMealCat, event.target.getAttribute('href'));
-  const dataResponse = await handleGETAPI(mealCatURL);
-  if (dataResponse instanceof Error) appendResponsePara('Unable to Fetch Data');
-  else {
-    const mealsArr = await createMealArr(dataResponse.meals);
-    appendResponsePara('Good good');
-    const mealFrag = createList('li', classes, mealsArr, xlink, likeAPI); /* need to be fixed up */
-    const listCtn = createElementDefault('ul', 'meals-ctn', false, mealFrag);
-    const appCtn = document.getElementById('app-ctn');
-    appCtn.appendChild(listCtn);
-  }
+  const invLikesURL = createApiInvURL(baseurlInvolvement, parameterIDApp, parameterLikeApp);
+  const dataResponseMeal = await handleGETAPI(mealCatURL);
+  const dataResponseInv = await handleGETAPI(invLikesURL);
+  if (dataResponseMeal instanceof Error || dataResponseInv instanceof Error) appendResponsePara('Unable to Fetch Data');
+  else await appendItems(dataResponseMeal.meals, dataResponseInv);
 };
 
 export {
