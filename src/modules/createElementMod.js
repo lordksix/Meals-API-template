@@ -101,11 +101,16 @@ const createButton = (func, classes, ariaLabel, textContent = false,
   return button;
 };
 
+const createImg = (classes, name, url) => {
+  const imgElem = createElementDefault('img', classes);
+  imgElem.setAttribute('src', url);
+  imgElem.setAttribute('alt', name);
+  return imgElem;
+};
+
 export {
-  createLabel,
-  createNS,
-  createTextArea,
-  addClass,
-  createElementDefault,
+  createLabel, createImg,
+  createNS, createTextArea,
+  addClass, createElementDefault,
   createButton,
 };
