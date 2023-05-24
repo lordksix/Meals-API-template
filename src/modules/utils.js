@@ -17,7 +17,7 @@ const appendItems = async (dataArr, invArr) => {
   const appCtn = document.getElementById('app-ctn');
   appCtn.innerHTML = '';
   dataArr.forEach(async (data) => {
-    const mealData = await getMealsIDResponse(data);
+    const mealData = await getMealsIDResponse(data.idMeal);
     const mealFrag = await createItem('li', classes, mealData.meals, xlink, await findLikes(mealData.meals[0].idMeal, invArr), createLike);
     appCtn.appendChild(mealFrag);
   });

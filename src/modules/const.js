@@ -5,11 +5,13 @@ const classLikes = 'app-like';
 const classLikesSVG = 'app-like-svg';
 const classLikesText = 'app-like-text';
 const classDivBtn = 'app-div-btn';
-const classBtn = 'app-btn';
+const classBtnComment = ['app-btn', 'comment'];
+const classBtnReservation = ['app-btn', 'reservation'];
 
 const classes = [
   classCtn, classImg, classTittle, classLikes,
-  classLikesSVG, classLikesText, classDivBtn, classBtn,
+  classLikesSVG, classLikesText, classDivBtn, classBtnComment,
+  classBtnReservation,
 ];
 
 const xlink = '../asset/resource/icons.svg#heart-like';

@@ -2,7 +2,7 @@ import {
   createElementDefault, createImg, createButton, createNS,
 } from './createElementMod.js';
 
-const createItem = async (elem, classes, mealApi, xlink, likeApi, cb) => {
+const createItem = async (elem, classes, mealApi, xlink, likeApi, callback0, callback1) => {
   const docFrag = document.createDocumentFragment();
   docFrag.appendChild(createImg(classes[1], mealApi[0].strMeal, mealApi[0].strMealThumb));
   const elemHeader = createElementDefault('div', classes[2]);
@@ -17,11 +17,12 @@ const createItem = async (elem, classes, mealApi, xlink, likeApi, cb) => {
   docFrag.appendChild(elemHeader);
   const btnDiv = createElementDefault('div', classes[6]);
   btnDiv.appendChild(createButton('button', classes[7], 'Go to Comments', 'Comments'));
-  btnDiv.appendChild(createButton('button', classes[7], 'Go to Reservations', 'Reservations'));
+  btnDiv.appendChild(createButton('button', classes[8], 'Go to Reservations', 'Reservations'));
   docFrag.appendChild(btnDiv);
   const itemElem = createElementDefault(elem, classes[0], false, docFrag);
   itemElem.setAttribute('data-id', mealApi[0].idMeal);
-  itemElem.addEventListener('click', cb);
+  itemElem.addEventListener('click', callback0);
+  itemElem.addEventListener('click', callback1);
   return itemElem;
 };
 

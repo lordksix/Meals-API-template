@@ -1,0 +1,1 @@
+export const countTotalItem = (node) => node.children.length;
