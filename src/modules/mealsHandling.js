@@ -7,7 +7,6 @@ import {
 const getMealsIDResponse = async (data) => {
   const mealIDURL = createApiMealURL(baseurllookupMeal, parameterMealID, data.idMeal);
   const dataResponse = await handleGETAPI(mealIDURL);
-  console.log(dataResponse);
   return dataResponse;
 };
 
