@@ -83,6 +83,12 @@ body {
 main {
   height: auto;
   flex-grow: 1;
+  padding: 20px;
+}
+
+#formFeedback {
+  text-align: center;
+  font-size: 2rem;
 }
 
 .active {
