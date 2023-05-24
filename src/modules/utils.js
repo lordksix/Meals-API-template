@@ -1,7 +1,7 @@
 import { createItem } from './ListItemMod.js';
 import { classes, xlink } from './const.js';
-import { createLike, findLikes, getLikesResponse } from './likeHandling.js';
-import { getMealsIDResponse, getMealsCatResponse } from './mealsHandling.js';
+import { createLike, findLikes, getLikesResponse } from './APILikeHandling.js';
+import { getMealsIDResponse, getMealsCatResponse } from './APIMealsHandling.js';
 
 const appendResponsePara = async (node) => {
   const showResponseForm = document.getElementById('formFeedback');
