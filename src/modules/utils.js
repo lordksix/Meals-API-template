@@ -1,39 +1,36 @@
-import {
-  createApiMealURL, createApiInvURL,
-} from './createURLAPI.js';
 import { createItem } from './ListItemMod.js';
-import { handleGETAPI } from './GetAPI.js';
-import {
-  classes, baseurlFilterMeal, parameterMealCat,
-  xlink, baseurlInvolvement, parameterLikeApp,
-  parameterIDApp,
-} from './const.js';
-import { getMealsAPIResponse, createLike, findLikes } from './likeHandling.js';
+import { classes, xlink } from './const.js';
+import { createLike, findLikes, getLikesResponse } from './likeHandling.js';
+import { getMealsIDResponse, getMealsCatResponse } from './mealsHandling.js';
 
 const appendResponsePara = async (node) => {
   const showResponseForm = document.getElementById('formFeedback');
   showResponseForm.textContent = node;
 };
 
+const getCat = async (event) => {
+  const catID = await event.target.getAttribute('href');
+  return catID;
+};
+
 const appendItems = async (dataArr, invArr) => {
   const appCtn = document.getElementById('app-ctn');
   appCtn.innerHTML = '';
   dataArr.forEach(async (data) => {
-    const mealData = await getMealsAPIResponse(data);
-    const mealFrag = await createItem('li', classes, mealData, xlink, await findLikes(mealData[0].idMeal, invArr), createLike);
+    const mealData = await getMealsIDResponse(data);
+    const mealFrag = await createItem('li', classes, mealData.meals, xlink, await findLikes(mealData.meals[0].idMeal, invArr), createLike);
     appCtn.appendChild(mealFrag);
   });
 };
 
 const printList = async (event) => {
-  const mealCatURL = createApiMealURL(baseurlFilterMeal, parameterMealCat, event.target.getAttribute('href'));
-  const invLikesURL = createApiInvURL(baseurlInvolvement, parameterIDApp, parameterLikeApp);
-  const dataResponseMeal = await handleGETAPI(mealCatURL);
-  const dataResponseInv = await handleGETAPI(invLikesURL);
+  const catID = await getCat(event);
+  const dataResponseMeal = await getMealsCatResponse(catID);
+  const dataResponseInv = await getLikesResponse();
   if (dataResponseMeal instanceof Error || dataResponseInv instanceof Error) appendResponsePara('Unable to Fetch Data');
   else await appendItems(dataResponseMeal.meals, dataResponseInv);
 };
 
 export {
-  printList, baseurlFilterMeal,
+  printList, xlink,
 };

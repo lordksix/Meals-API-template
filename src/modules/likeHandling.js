@@ -1,10 +1,9 @@
 import { handlePost } from './PostAPI.js';
 import {
-  createApiMealURL, createApiInvURL,
+  createApiInvURL,
 } from './createURLAPI.js';
 import { handleGETAPI } from './GetAPI.js';
 import {
-  baseurllookupMeal, parameterMealID,
   baseurlInvolvement, parameterLikeApp,
   parameterIDApp,
 } from './const.js';
@@ -43,12 +42,12 @@ const createLike = async (event) => {
   }
 };
 
-const getMealsAPIResponse = async (data) => {
-  const mealIDURL = createApiMealURL(baseurllookupMeal, parameterMealID, data.idMeal);
-  const dataResponse = await handleGETAPI(mealIDURL);
-  return dataResponse.meals;
+const getLikesResponse = async () => {
+  const invLikesURL = createApiInvURL(baseurlInvolvement, parameterIDApp, parameterLikeApp);
+  const dataResponse = await handleGETAPI(invLikesURL);
+  return dataResponse;
 };
 
 export {
-  getMealsAPIResponse, createLike, findLikes,
+  createLike, findLikes, getLikesResponse,
 };
