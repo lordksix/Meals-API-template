@@ -1,6 +1,6 @@
-const countTotalItem = async (node) => node.children.length;
+const countTotalItem = (node) => node.children.length;
 
-const appendTotal = async (total, id) => {
+const appendTotal = (total, id) => {
   const idSpan = document.getElementById(id);
   idSpan.textContent = ` (${total})`;
 };
