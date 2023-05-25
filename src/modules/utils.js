@@ -21,7 +21,7 @@ const appendItems = async (dataArr, invArr, ID) => {
     const mealData = await getMealsIDResponse(data.idMeal);
     const mealFrag = await createItem('li', classes, mealData.meals, xlink, await findLikes(mealData.meals[0].idMeal, invArr), createLike);
     appCtn.appendChild(mealFrag);
-    const total = countTotalItem(appCtn);
+    const total = await countTotalItem(appCtn);
     appendTotal(total, ID);
   });
 };

@@ -20,8 +20,6 @@
     },
     "ignorePatterns": [
       "dist/",
-      "build/",
-      "node_modules/",
-      "coverage/"
+      "build/"
     ]
   }
