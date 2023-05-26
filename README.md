@@ -31,7 +31,7 @@
 # 📖 [Meals App] <a name="about-project"></a>
 
 **Meals App** is a showcase  of modular code, use of libraries like JEST, webpack, Fetch API. App is generated dinamically from the data fetched from a API.
-
+A video description of the project outline, [check out this loom recording](https://drive.google.com/file/d/1QD_r-HTxgS3arMaUJHikmA3dvqN1fswH/view?usp=share_link).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🛠 Built With <a name="built-with"></a>
