@@ -3,10 +3,7 @@ import {
   createApiInvURL,
 } from './createURLAPI.js';
 import { handleGETAPI } from './GetAPI.js';
-import {
-  baseurlInvolvement, parameterLikeApp,
-  parameterIDApp,
-} from './const.js';
+import { involvementAPIUri } from './const.js';
 
 const likesJson = async (id) => (
   {
@@ -33,7 +30,8 @@ const updateLikesDOM = async (node, likes) => {
 const createLike = async (event) => {
   if (event.target.classList.contains('heart-like') && !event.target.classList.contains('likes')) {
     const currentID = event.currentTarget.dataset.id;
-    const url = createApiInvURL(baseurlInvolvement, parameterIDApp, parameterLikeApp);
+    const url = createApiInvURL(involvementAPIUri.base, involvementAPIUri.appID,
+      involvementAPIUri.queryLike);
     await handlePost(url, await likesJson(currentID));
     const dataResponseInv = await handleGETAPI(url);
     const qtyLikes = await findLikes(currentID, dataResponseInv);
@@ -43,7 +41,8 @@ const createLike = async (event) => {
 };
 
 const getLikesResponse = async () => {
-  const invLikesURL = createApiInvURL(baseurlInvolvement, parameterIDApp, parameterLikeApp);
+  const invLikesURL = createApiInvURL(involvementAPIUri.base, involvementAPIUri.appID,
+    involvementAPIUri.queryLike);
   const dataResponse = await handleGETAPI(invLikesURL);
   return dataResponse;
 };
