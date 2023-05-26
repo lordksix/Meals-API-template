@@ -309,7 +309,7 @@ main {
   width: 25vw;
   height: auto;
   margin-inline: auto;
-  max-width: 350px;
+  max-width: 280px;
 }
 
 .app-title-header {
@@ -327,7 +327,7 @@ main {
 }
 
 .app-section-ctn {
-  height: 14vh;
+  height: 10vh;
   overflow-y: scroll;
 }
 
