@@ -17,26 +17,29 @@ const findLikes = async (id, invArr) => {
   return 0;
 };
 
-const updateLikesDOM = async (node, likes) => {
+const updateLikesIcon = (node) => {
+  const regularLike = node.querySelector('.heart-like');
+  const redLike = node.querySelector('.heart-like-red');
+  regularLike.classList.add('hidden');
+  redLike.classList.remove('hidden');
+};
+
+const updateLikesQty = async (node, likes) => {
   const likeText = node.querySelector('.app-like-text');
   likeText.textContent = `${likes} like${likes > 1 ? 's' : ''}`;
-  const useVSG = node.querySelector('use');
-  const svgVSG = node.querySelector('svg');
-  useVSG.classList.add('likes');
-  svgVSG.classList.add('likes');
-  useVSG.setAttribute('href', '../asset/resource/icons.svg#heart-like-red');
 };
 
 const createLike = async (event) => {
-  if (event.target.classList.contains('heart-like') && !event.target.classList.contains('likes')) {
+  if (event.target.classList.contains('heart-like')) {
+    const prtNde = event.target.parentNode.parentNode;
+    updateLikesIcon(prtNde);
     const currentID = event.currentTarget.dataset.id;
     const url = createApiInvURL(involvementAPIUri.base, involvementAPIUri.appID,
       involvementAPIUri.queryLike);
     await handlePost(url, await likesJson(currentID));
     const dataResponseInv = await handleGETAPI(url);
     const qtyLikes = await findLikes(currentID, dataResponseInv);
-    const prtNde = event.target.parentNode.parentNode;
-    await updateLikesDOM(prtNde, await qtyLikes);
+    await updateLikesQty(prtNde, await qtyLikes);
   }
 };
 

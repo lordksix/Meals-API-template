@@ -25,10 +25,11 @@ const createItem = (elem, classes, mealApi, xlink, likeApi,
   const titleImg = createElementDefault('p', classes.likesCtn, mealApi.strMeal);
   elemHeader.appendChild(titleImg);
   const elemLikes = createElementDefault('div', classes.likesIcon);
-  const elemLikesSVG = createNS(xlink);
-  elemLikes.appendChild(elemLikesSVG);
+  const elemLikesSVG = createNS(xlink.regular);
+  const elemLikesRedSVG = createNS(xlink.red);
+  elemLikesRedSVG.classList.add('hidden');
   const elemLikesP = createElementDefault('p', classes.likesText, `${likeApi} like${likeApi > 1 ? 's' : ''}`);
-  elemLikes.appendChild(elemLikesP);
+  elemLikes.append(elemLikesSVG, elemLikesRedSVG, elemLikesP);
   elemHeader.appendChild(elemLikes);
   docFrag.appendChild(elemHeader);
   const btnDiv = createElementDefault('div', classes.classDivBtn);

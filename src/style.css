@@ -34,6 +34,10 @@ body {
   filter: blur(5px);
 }
 
+.hidden {
+  display: none;
+}
+
 /* Navbar */
 
 .nav-bar {
@@ -90,7 +94,9 @@ body {
 }
 
 .app-item svg,
-.footer-row svg {
+.footer-row svg,
+.app-item use,
+.footer-row use {
   height: var(--svg-side);
   width: var(--svg-side);
 }
@@ -329,10 +335,6 @@ main {
   display: grid;
   grid-template-columns: 1fr 3fr;
   padding-inline: 0 5%;
-}
-
-.app-form-input-hidden {
-  display: none;
 }
 
 .app-form-input-reg,

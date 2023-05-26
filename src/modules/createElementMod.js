@@ -41,7 +41,7 @@ const createElementDefault = (elem, classes = false, textContent = false, innerC
 const createNS = (href) => {
   const xlink = href.split('#');
   const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  use.setAttribute('href', `${href}`);
+  use.setAttributeNS(null, 'href', `${href}`);
   use.classList.add(xlink[1]);
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.appendChild(use);

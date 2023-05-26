@@ -36,7 +36,7 @@ const popUpFormClasses = {
   container: 'app-form-sec-ctn',
   title: 'app-form-title',
   formContainer: 'app-form-ctn',
-  inputHidden: 'app-form-input-hidden',
+  inputHidden: ['app-form-input-reg', 'hidden'],
   inputDiv: 'app-form-input-div',
   inputLabel: 'app-form-input-label',
   inputReg: 'app-form-input-reg',
@@ -44,7 +44,10 @@ const popUpFormClasses = {
   button: 'app-btn',
 };
 
-const xlink = '../asset/resource/icons.svg#heart-like';
+const xlink = {
+  regular: './asset/resource/icons.svg#heart-like',
+  red: './asset/resource/icons.svg#heart-like-red',
+};
 
 const meaAPIUri = {
   baseFilter: 'https://www.themealdb.com/api/json/v1/1/filter.php?',
