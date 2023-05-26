@@ -58,7 +58,7 @@ const involvementAPIUri = {
   queryLike: 'likes/',
   queryComment: 'comments',
   queryReserve: 'reservations',
-  appID: 'Wbe3IznQ2LQoFPHmVrwp',
+  appID: 'Wbe3IznQ2LQoFPHmVrwp/',
 };
 
 export {
