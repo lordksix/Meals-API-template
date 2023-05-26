@@ -1,8 +1,6 @@
 import './style.css';
 import './asset/resource/icons.svg';
-import {
-  printList,
-} from './modules/utils.js';
+import { printListItems } from './modules/utils.js';
 
 const navItem = document.querySelectorAll('.query a');
 
@@ -12,6 +10,6 @@ navItem.forEach((link) => {
     e.preventDefault();
     navItem.forEach((navItem) => navItem.classList.remove('active'));
     link.classList.add('active');
-    printList(e);
+    printListItems(e);
   });
 });
