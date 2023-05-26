@@ -32,7 +32,7 @@ const createItem = (elem, classes, mealApi, xlink, likeApi,
   elemLikes.append(elemLikesSVG, elemLikesRedSVG, elemLikesP);
   elemHeader.appendChild(elemLikes);
   docFrag.appendChild(elemHeader);
-  const btnDiv = createElementDefault('div', classes.classDivBtn);
+  const btnDiv = createElementDefault('div', classes.btnCtn);
   const commentBtn = createButton('button', classes.btnComment, 'Go to Comments', 'Comments');
   if (callback1) commentBtn.addEventListener('click', callback1);
   btnDiv.appendChild(commentBtn);
@@ -108,11 +108,11 @@ const createCommentForm = (id, callback, classLine = false) => {
   const inpuItemID = createInput('text', classLine.inputHidden, 'item_id', 'item_id', false, true, true);
   inpuItemID.setAttribute('value', id);
   const labelUser = createLabel('username', classLine.inputLabel, 'Name');
-  const inputUser = createInput('text', classLine.inputReg, 'username', 'username', 'Please input your name', true, false);
+  const inputUser = createInput('text', classLine.inputReg, 'username', 'username', 'Name', true, false);
   const userDiv = createElementDefault('div', classLine.inputDiv, false, labelUser);
   userDiv.appendChild(inputUser);
   const labelComment = createLabel('comment', classLine.inputLabel, 'Comment');
-  const commentArea = createTextArea('250', classLine.textArea, 'comment', 'comment', 'Please input your comment', true);
+  const commentArea = createTextArea('250', classLine.textArea, 'comment', 'comment', 'Comment', true);
   const commentDiv = createElementDefault('div', classLine.inputDiv, false, labelComment);
   commentDiv.appendChild(commentArea);
   const submitBtn = createButton('submit', classLine.button, 'Submit comment', 'Submit');

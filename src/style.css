@@ -44,17 +44,25 @@ body {
   background-color: #848bf1;
   padding: 2%;
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
+.nav-bar > a {
+  display: flex;
+  justify-content: center;
+}
+
 .logo {
+  display: flex;
+  justify-content: center;
   height: calc(var(--svg-side) * 2);
 }
 
 .nav-list {
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -111,7 +119,11 @@ main {
 
 #formFeedback {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+#title {
+  text-align: center;
 }
 
 /* Item Container */
@@ -154,13 +166,13 @@ main {
   justify-content: space-between;
   align-items: center;
   padding-inline: 5%;
+  flex-grow: 1;
 }
 
 .app-div-btn {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15%;
-  justify-content: center;
+  flex-flow: column;
+  gap: 10px;
 }
 
 .app-like-text {
@@ -332,9 +344,9 @@ main {
 }
 
 .app-form-input-div {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  padding-inline: 0 5%;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
 }
 
 .app-form-input-reg,
@@ -347,4 +359,25 @@ main {
 
 .app-form-textArea {
   resize: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .nav-bar {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  .app-form-input-div {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding-inline: 0 5%;
+  }
+
+  .app-div-btn {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    gap: 2.5%;
+    justify-content: center;
+  }
 }
