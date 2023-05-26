@@ -41,7 +41,7 @@ const createElementDefault = (elem, classes = false, textContent = false, innerC
 const createNS = (href) => {
   const xlink = href.split('#');
   const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  use.setAttribute('href', `${href}`);
+  use.setAttributeNS(null, 'href', `${href}`);
   use.classList.add(xlink[1]);
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.appendChild(use);
@@ -66,11 +66,29 @@ const createLabel = (forAtr = false, classes = false, textContent = false, inner
 };
 
 const createTextArea = (length = false, classes = false,
-  textContent = false, innerChild = false) => {
-  const textArea = createElementDefault('textarea', classes, textContent, innerChild);
+  id = false, name = false, placeholder = false, required = false) => {
+  const textArea = createElementDefault('textarea', classes);
   if (length) textArea.setAttribute('maxlength', length);
+  if (id) textArea.setAttribute('id', id);
+  if (name) textArea.setAttribute('name', name);
+  if (placeholder) textArea.setAttribute('placeholder', placeholder);
+  if (required) textArea.setAttribute('required', 'true');
+  else textArea.setAttribute('required', 'false');
   textArea.setAttribute('spellcheck', 'true');
   return textArea;
+};
+
+const createInput = (type = false, classes = false,
+  id = false, name = false, placeholder = false, required = false, readonly = false) => {
+  const input = createElementDefault('input', classes);
+  if (type) input.setAttribute('type', type);
+  if (id) input.setAttribute('id', id);
+  if (name) input.setAttribute('name', name);
+  if (placeholder) input.setAttribute('placeholder', placeholder);
+  if (required) input.setAttribute('required', 'true');
+  if (readonly) input.setAttribute('readonly', 'true');
+  input.setAttribute('spellcheck', 'true');
+  return input;
 };
 
 /**
@@ -109,8 +127,6 @@ const createImg = (classes, name, url) => {
 };
 
 export {
-  createLabel, createImg,
-  createNS, createTextArea,
-  addClass, createElementDefault,
-  createButton,
+  createLabel, createImg, createNS, createTextArea,
+  addClass, createElementDefault, createButton, createInput,
 };

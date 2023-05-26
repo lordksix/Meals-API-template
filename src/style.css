@@ -1,6 +1,9 @@
 :root {
   --svg-side: clamp(16px, (100vw - 320px) * 1000, clamp(20px, (100vw - 640px) * 1000, clamp(25px, (100vw - 1280px) * 1000, 30px)));
   --font-size: calc(var(--svg-side) * 0.8);
+  --bckgrd-0: #fff0;
+  --bg-modal: #c1c7d0be;
+  --bckgrd: #fff;
 }
 
 * {
@@ -23,21 +26,43 @@ body {
   padding: 5px;
 }
 
+.svg {
+  margin-block: auto;
+}
+
+.modal-active .modal-bg {
+  filter: blur(5px);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Navbar */
+
 .nav-bar {
   background-color: #848bf1;
   padding: 2%;
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
+.nav-bar > a {
+  display: flex;
+  justify-content: center;
+}
+
 .logo {
+  display: flex;
+  justify-content: center;
   height: calc(var(--svg-side) * 2);
 }
 
 .nav-list {
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -57,6 +82,12 @@ body {
   color: black;
 }
 
+.active {
+  font-weight: bolder;
+}
+
+/* Footer */
+
 .extremity {
   padding-block: 10px;
   padding-inline: 20px;
@@ -65,20 +96,20 @@ body {
   justify-content: space-between;
 }
 
-.svg {
-  margin-block: auto;
-}
-
 .footer-row {
   display: flex;
   gap: 10px;
 }
 
 .app-item svg,
-.footer-row svg {
+.footer-row svg,
+.app-item use,
+.footer-row use {
   height: var(--svg-side);
   width: var(--svg-side);
 }
+
+/* Main App */
 
 main {
   height: auto;
@@ -88,12 +119,14 @@ main {
 
 #formFeedback {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
-.active {
-  font-weight: bolder;
+#title {
+  text-align: center;
 }
+
+/* Item Container */
 
 #app-ctn {
   --n: 2;
@@ -123,22 +156,23 @@ main {
 }
 
 .app-img {
-  width: 100%;
+  width: 80%;
   height: auto;
+  margin-inline: auto;
 }
 
-.app-title {
+.app-title-div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-inline: 5%;
+  flex-grow: 1;
 }
 
 .app-div-btn {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15%;
-  justify-content: center;
+  flex-flow: column;
+  gap: 10px;
 }
 
 .app-like-text {
@@ -162,4 +196,188 @@ main {
 
 .app-btn:hover {
   background-color: rgb(114, 46, 46);
+}
+
+/* Pop-up */
+
+.app-item-popup-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bckgrd-0);
+  top: 0;
+  left: 0;
+  z-index: 20;
+  padding-inline: 20vw;
+  padding-block: 2.5vh 15vh;
+  animation: fadeInProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.app-item-popup-overlay.out {
+  animation: fadeOutProject 0.3s ease-out forwards;
+}
+
+@keyframes fadeInProject {
+  0% {
+    z-index: -3;
+    background: var(--bckgrd-0);
+  }
+
+  100% {
+    z-index: 20;
+    background: var(--bg-modal);
+  }
+}
+
+@keyframes fadOutnProject {
+  0% {
+    z-index: 20;
+    background: var(--bg-modal);
+  }
+
+  100% {
+    z-index: -3;
+    background: var(--bckgrd-0);
+  }
+}
+
+.app-item-popup {
+  padding-inline: 5%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: var(--bckgrd);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding-block: 2.5% 5%;
+  max-width: 500px;
+  margin-inline: auto;
+  gap: 10px;
+  transform: scale(0.3);
+  animation: scaleUpProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.out .app-item-popup {
+  animation: scaleDownProject 0.3s ease-out forwards;
+}
+
+@keyframes scaleUpProject {
+  0% {
+    transform: scale(0.3) translateY(1000px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 100%;
+  }
+}
+
+@keyframes scaleDownProject {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 100%;
+  }
+
+  100% {
+    transform: scale(0.3) translateY(1000px);
+    opacity: 0;
+  }
+}
+
+.app-exit,
+.app-title-pop {
+  font-weight: bolder;
+}
+
+.app-exit {
+  font-size: 2rem;
+  text-align: right;
+  cursor: pointer;
+}
+
+.app-property {
+  --wap: 800px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(100%/3 + 0.1%, (var(--wap) - 100vw) * 1000, 100%), 1fr));
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.app-img-pop {
+  width: 25vw;
+  height: auto;
+  margin-inline: auto;
+  max-width: 350px;
+}
+
+.app-title-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+/* Comments and Reservation Section */
+
+.app-section-header {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.app-section-ctn {
+  height: 14vh;
+  overflow-y: scroll;
+}
+
+/* Comments and Reservation Form */
+
+.app-form-title {
+  text-align: center;
+}
+
+.app-form-ctn {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.app-form-input-div {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.app-form-input-reg,
+.app-form-textArea {
+  padding-inline: 7px;
+  padding-block: 5px;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.app-form-textArea {
+  resize: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .nav-bar {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  .app-form-input-div {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding-inline: 0 5%;
+  }
+
+  .app-div-btn {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    gap: 2.5%;
+    justify-content: center;
+  }
 }
