@@ -211,7 +211,7 @@ main {
   left: 0;
   z-index: 20;
   padding-inline: 20vw;
-  padding-block: 2.5vh 5vh;
+  padding-block: 7.5vh 7.5vh;
   animation: fadeInProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
@@ -251,11 +251,18 @@ main {
   background-color: var(--bckgrd);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding-block: 2.5vh 5vh;
+  padding-block: 2.5vh;
   gap: 10px;
-  max-height: 92.5vh;
+  max-height: 85vh;
   transform: scale(0.3);
   animation: scaleUpProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.app-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 10px;
 }
 
 .out .app-item-popup {
@@ -292,9 +299,9 @@ main {
 }
 
 .app-exit {
-  font-size: 2rem;
   text-align: right;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .app-property {
@@ -311,16 +318,23 @@ main {
   max-height: 35vh;
   margin-inline: auto;
   max-width: 28vw;
-  flex-shrink: 2;
 }
 
 .app-title-header {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
+  font-size: 0.75rem;
 }
 
 /* Comments and Reservation Section */
+
+.app-sec {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  gap: 10px;
+}
 
 .app-section-header {
   display: flex;
@@ -331,18 +345,10 @@ main {
 .app-section-ctn {
   max-height: 10vh;
   overflow-y: scroll;
-  flex-shrink: 2;
-}
-
-.app-section-item {
   font-size: 0.85rem;
 }
 
 /* Comments and Reservation Form */
-
-.app-form-sec-ctn {
-  font-size: 0.9rem;
-}
 
 .app-form-title {
   text-align: center;
@@ -351,13 +357,13 @@ main {
 .app-form-ctn {
   display: flex;
   flex-flow: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .app-form-input-div {
   display: flex;
   flex-flow: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .app-form-input-reg,
@@ -390,5 +396,30 @@ main {
     flex-wrap: wrap;
     gap: 2.5%;
     justify-content: center;
+  }
+}
+
+@media (orientation: landscape) {
+  .app-item-popup-overlay {
+    padding-inline: 7.5vw 7.5vw;
+    padding-block: 20vh;
+  }
+
+  .app-item-popup {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    max-width: 85vw;
+    height: auto;
+  }
+
+  .app-title-header {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+  }
+
+  .app-img-pop {
+    max-height: 28vh;
+    max-width: 35vw;
   }
 }

@@ -23,6 +23,8 @@ const popUpClasses = {
   title: 'app-title-pop',
   sectionCtn: 'app-sec-ctn',
   formContainer: 'app-form-sec-ctn',
+  itemInfo: 'app-info',
+  itemSection: 'app-sec',
 };
 
 const popUpSectionClasses = {

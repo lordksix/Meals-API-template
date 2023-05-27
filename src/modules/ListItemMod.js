@@ -58,7 +58,7 @@ const createPopup = (elem, classes, mealApi, callback = false, callback2 = false
   titleX.addEventListener('click', closePop);
   elemHeader.append(titlePop, titleX);
   docFrag.appendChild(elemHeader);
-  docFrag.appendChild(createImg(classes.image, mealApi.strMeal, mealApi.strMealThumb));
+  const itemInfo = createElementDefault('div', classes.itemInfo, false, createImg(classes.image, mealApi.strMeal, mealApi.strMealThumb));
   const elemProp = createElementDefault('div', classes.properties);
   const mealName = createElementDefault('p', classes.property, `Name: ${mealApi.strMeal}`);
   const mealCat = createElementDefault('p', classes.property, `Category: ${mealApi.strCategory}`);
@@ -66,12 +66,15 @@ const createPopup = (elem, classes, mealApi, callback = false, callback2 = false
   const tag = mealApi.strTags ? mealApi.strTags.split(',').join(', ') : 'NONE';
   const mealTags = createElementDefault('p', classes.property, `Area: ${tag}`);
   elemProp.append(mealName, mealCat, mealArea, mealTags);
-  docFrag.appendChild(elemProp);
+  itemInfo.appendChild(elemProp);
+  docFrag.appendChild(itemInfo);
   const secCtn = createElementDefault('div', classes.sectionCtn);
   const formCtn = createElementDefault('div', classes.formContainer);
   if (callback) secCtn.appendChild(callback);
   if (callback2) formCtn.appendChild(callback2);
-  docFrag.append(secCtn, formCtn);
+  const itemSection = createElementDefault('div', classes.itemSection, false, secCtn);
+  itemSection.appendChild(formCtn);
+  docFrag.append(itemSection);
   const itemElem = createElementDefault(elem, classes.container, false, docFrag);
   itemElem.setAttribute('data-id', mealApi.idMeal);
   const itemCont = createElementDefault(elem, classes.overlay, false, itemElem);
