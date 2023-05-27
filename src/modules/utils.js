@@ -29,7 +29,8 @@ const appendPopUp = async (mealAPi, type) => {
         createForm(mealAPi.idMeal, postComment, popUpFormClasses, type));
       break;
     case 'Reservations':
-      popUP = '';
+      popUP = createPopupHTML('div', popUpClasses, mealAPi, createSection(comment, popUpSectionClasses, type),
+        createForm(mealAPi.idMeal, false, popUpFormClasses, type));
       break;
     default:
       popUP = '';
@@ -46,7 +47,7 @@ const appendListItems = async (dataArr, invArr, ID) => {
   dataArr.forEach(async (data) => {
     const mealData = await getMealsIDResponse(data.idMeal);
     const mealFrag = createItem('li', itemClasses, mealData.meals[0], await findLikes(mealData.meals[0].idMeal, invArr),
-      createLike, () => appendPopUp(mealData.meals[0], 'Comments'));
+      createLike, () => appendPopUp(mealData.meals[0], 'Comments'), () => appendPopUp(mealData.meals[0], 'Reservations'));
     appCtn.appendChild(mealFrag);
     const total = countTotalItem(appCtn);
     appendTotal(total, ID);

@@ -161,6 +161,28 @@ const createSection = (dataArr, classes = false, type) => {
   return docFrag;
 };
 
+const createCommentInput = (classLine) => {
+  const labelComment = createLabel('comment', classLine.inputLabel, 'Comment');
+  const commentArea = createTextArea('250', classLine.textArea, 'comment', 'comment', 'Comment', true);
+  const commentDiv = createElementDefault('div', classLine.inputDiv, false, labelComment);
+  commentDiv.appendChild(commentArea);
+  return commentDiv;
+};
+const createReserveInput = (classLine) => {
+  const docFrag = document.createDocumentFragment();
+  const labelDateStart = createLabel('dateCreated', classLine.inputLabel, 'Start Date');
+  const inputDateStart = createInput('date', classLine.inputReg, 'dateCreated', 'date_start', 'Start Date', true, false);
+  const dateStartDiv = createElementDefault('div', classLine.inputDiv, false, labelDateStart);
+  dateStartDiv.appendChild(inputDateStart);
+  docFrag.appendChild(dateStartDiv);
+  const labelDateEnded = createLabel('dateEnd', classLine.inputLabel, 'End Date');
+  const inputDateEnded = createInput('date', classLine.inputReg, 'dateEnd', 'date_end', 'End Date', true, false);
+  const dateEndedDiv = createElementDefault('div', classLine.inputDiv, false, labelDateEnded);
+  dateEndedDiv.appendChild(inputDateEnded);
+  docFrag.appendChild(dateEndedDiv);
+  return docFrag;
+};
+
 /**
  * Description
  * @param {string} id unique identifier of elemement
@@ -168,7 +190,7 @@ const createSection = (dataArr, classes = false, type) => {
  * @param {object} classLine=false object with names of classes that will be use
  * @returns {Node}
  */
-const createForm = (id, callback, classLine = false, type) => {
+const createForm = (id, callback = false, classLine = false, type) => {
   let titleFormStr;
   switch (type) {
     case 'Comments':
@@ -190,13 +212,13 @@ const createForm = (id, callback, classLine = false, type) => {
   const inputUser = createInput('text', classLine.inputReg, 'username', 'username', 'Name', true, false);
   const userDiv = createElementDefault('div', classLine.inputDiv, false, labelUser);
   userDiv.appendChild(inputUser);
-  const labelComment = createLabel('comment', classLine.inputLabel, 'Comment');
-  const commentArea = createTextArea('250', classLine.textArea, 'comment', 'comment', 'Comment', true);
-  const commentDiv = createElementDefault('div', classLine.inputDiv, false, labelComment);
-  commentDiv.appendChild(commentArea);
+  let uniqueInput;
+  if (type === 'Comments') uniqueInput = createCommentInput(classLine);
+  else if (type === 'Reservations') uniqueInput = createReserveInput(classLine);
+  else uniqueInput = '';
   const submitBtn = createButton('submit', classLine.button, 'Submit comment', 'Submit');
-  formSec.append(inpuItemID, userDiv, commentDiv, submitBtn);
-  formSec.addEventListener('submit', callback);
+  formSec.append(inpuItemID, userDiv, uniqueInput, submitBtn);
+  if (callback) formSec.addEventListener('submit', callback);
   docFrag.append(titleForm, formSec);
   return docFrag;
 };

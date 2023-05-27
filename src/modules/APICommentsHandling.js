@@ -25,9 +25,9 @@ const postComment = async (event) => {
   const postURL = createApiInvURL(involvementAPIUri.base, involvementAPIUri.appID,
     involvementAPIUri.queryComment);
   const idMeal = event.currentTarget.id;
-  const commentCtn = document.querySelector('.app-sec-ctn');
   await handleFormSubmit(event, postURL);
   const newComments = await getCommentArray(idMeal);
+  const commentCtn = document.querySelector('.app-sec-ctn');
   commentCtn.innerHTML = '';
   commentCtn.appendChild(createSection(newComments, popUpSectionClasses, 'Comments'));
 };
