@@ -58,6 +58,7 @@ body {
   display: flex;
   justify-content: center;
   height: calc(var(--svg-side) * 2);
+  max-width: 80vw;
 }
 
 .nav-list {
@@ -163,6 +164,7 @@ main {
 
 .app-title-div {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding-inline: 5%;
@@ -202,14 +204,14 @@ main {
 
 .app-item-popup-overlay {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: var(--bckgrd-0);
   top: 0;
   left: 0;
   z-index: 20;
   padding-inline: 20vw;
-  padding-block: 2.5vh 15vh;
+  padding-block: 2.5vh 5vh;
   animation: fadeInProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
@@ -242,17 +244,16 @@ main {
 }
 
 .app-item-popup {
-  padding-inline: 5%;
+  padding-inline: 2.5vw;
   display: flex;
   flex-flow: column;
   justify-content: center;
   background-color: var(--bckgrd);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding-block: 2.5% 5%;
-  max-width: 500px;
-  margin-inline: auto;
+  padding-block: 2.5vh 5vh;
   gap: 10px;
+  max-height: 92.5vh;
   transform: scale(0.3);
   animation: scaleUpProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -301,15 +302,16 @@ main {
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(clamp(100%/3 + 0.1%, (var(--wap) - 100vw) * 1000, 100%), 1fr));
-  column-gap: 10px;
-  row-gap: 10px;
+  row-gap: 5px;
+  flex-shrink: 2;
+  font-size: 0.85rem;
 }
 
 .app-img-pop {
-  width: 25vw;
-  height: auto;
+  max-height: 35vh;
   margin-inline: auto;
-  max-width: 280px;
+  max-width: 28vw;
+  flex-shrink: 2;
 }
 
 .app-title-header {
@@ -327,11 +329,20 @@ main {
 }
 
 .app-section-ctn {
-  height: 10vh;
+  max-height: 10vh;
   overflow-y: scroll;
+  flex-shrink: 2;
+}
+
+.app-section-item {
+  font-size: 0.85rem;
 }
 
 /* Comments and Reservation Form */
+
+.app-form-sec-ctn {
+  font-size: 0.9rem;
+}
 
 .app-form-title {
   text-align: center;
