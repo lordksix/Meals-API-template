@@ -6,7 +6,7 @@ import {
 } from './const.js';
 import { createLike, findLikes, getLikesResponse } from './APILikeHandling.js';
 import { getMealsIDResponse, getMealsCatResponse } from './APIMealsHandling.js';
-import { postComment, getCommentArray } from './APICommentsHandling.js';
+import { postInvolvement, getInvolvementArray } from './APInvolvemtnHandling.js';
 import { countTotalItem, appendTotal } from './CountTotalItems.js';
 
 const appendResponseFeedback = async (node) => {
@@ -20,22 +20,11 @@ const getCategoryItems = async (event) => {
 };
 
 const appendPopUp = async (mealAPi, type) => {
-  const comment = await getCommentArray(mealAPi.idMeal);
+  const dataInvolvemenAPI = await getInvolvementArray(mealAPi.idMeal, type);
   toggleBlur();
-  let popUP;
-  switch (type) {
-    case 'Comments':
-      popUP = createPopupHTML('div', popUpClasses, mealAPi, createSection(comment, popUpSectionClasses, type),
-        createForm(mealAPi.idMeal, postComment, popUpFormClasses, type));
-      break;
-    case 'Reservations':
-      popUP = createPopupHTML('div', popUpClasses, mealAPi, createSection(comment, popUpSectionClasses, type),
-        createForm(mealAPi.idMeal, false, popUpFormClasses, type));
-      break;
-    default:
-      popUP = '';
-      break;
-  }
+  const popUP = createPopupHTML('div', popUpClasses, mealAPi, createSection(dataInvolvemenAPI, popUpSectionClasses, type),
+    createForm(mealAPi.idMeal, postInvolvement, popUpFormClasses, type));
+
   const popupDiv = document.getElementById('popup');
   popupDiv.innerHTML = '';
   popupDiv.appendChild(popUP);

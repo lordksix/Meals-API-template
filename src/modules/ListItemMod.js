@@ -183,6 +183,25 @@ const createReserveInput = (classLine) => {
   return docFrag;
 };
 
+const createtextContent = (type) => {
+  const formTextContext = {};
+  switch (type) {
+    case 'Comments':
+      formTextContext.title = 'Add a comment';
+      formTextContext.submit = 'Submit comment';
+      break;
+    case 'Reservations':
+      formTextContext.title = 'Add a reservation';
+      formTextContext.submit = 'Submit reserve';
+      break;
+    default:
+      formTextContext.title = '';
+      formTextContext.submit = '';
+      break;
+  }
+  return formTextContext;
+};
+
 /**
  * Description
  * @param {string} id unique identifier of elemement
@@ -191,21 +210,12 @@ const createReserveInput = (classLine) => {
  * @returns {Node}
  */
 const createForm = (id, callback = false, classLine = false, type) => {
-  let titleFormStr;
-  switch (type) {
-    case 'Comments':
-      titleFormStr = 'Add a comment';
-      break;
-    case 'Reservations':
-      titleFormStr = 'Add a reservation';
-      break;
-    default:
-      break;
-  }
+  const formTextContent = createtextContent(type);
   const docFrag = document.createDocumentFragment();
-  const titleForm = createElementDefault('h3', classLine.title, titleFormStr);
+  const titleForm = createElementDefault('h3', classLine.title, formTextContent.title);
   const formSec = createElementDefault('form', classLine.formContainer);
-  formSec.setAttribute('id', id);
+  formSec.setAttribute('id', type);
+  formSec.setAttribute('data-id', id);
   const inpuItemID = createInput('text', classLine.inputHidden, 'item_id', 'item_id', false, true, true);
   inpuItemID.setAttribute('value', id);
   const labelUser = createLabel('username', classLine.inputLabel, 'Name');
@@ -216,7 +226,7 @@ const createForm = (id, callback = false, classLine = false, type) => {
   if (type === 'Comments') uniqueInput = createCommentInput(classLine);
   else if (type === 'Reservations') uniqueInput = createReserveInput(classLine);
   else uniqueInput = '';
-  const submitBtn = createButton('submit', classLine.button, 'Submit comment', 'Submit');
+  const submitBtn = createButton('submit', classLine.button, formTextContent.submit, 'Submit');
   formSec.append(inpuItemID, userDiv, uniqueInput, submitBtn);
   if (callback) formSec.addEventListener('submit', callback);
   docFrag.append(titleForm, formSec);
