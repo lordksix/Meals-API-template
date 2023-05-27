@@ -1,6 +1,6 @@
 :root {
   --svg-side: clamp(16px, (100vw - 320px) * 1000, clamp(20px, (100vw - 640px) * 1000, clamp(25px, (100vw - 1280px) * 1000, 30px)));
-  --font-size: calc(var(--svg-side) * 0.8);
+  --font-size: clamp(0.65rem, (100vw - 320px) * 1000, clamp(0.72rem, (100vw - 640px) * 1000, clamp(0.85rem, (100vw - 1280px) * 1000, 1rem)));
   --bckgrd-0: #fff0;
   --bg-modal: #c1c7d0be;
   --bckgrd: #fff;
@@ -131,11 +131,11 @@ main {
 
 #app-ctn {
   --n: 2;
-  --w: 350px;
+  --w: 400px;
   --n1: 3;
-  --w1: 700px;
+  --w1: 800px;
   --n2: 4;
-  --w2: 1050px;
+  --w2: 1200px;
 
   display: grid;
   column-gap: 30px;
@@ -163,12 +163,10 @@ main {
 }
 
 .app-title-div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   padding-inline: 5%;
-  flex-grow: 1;
 }
 
 .app-div-btn {
@@ -252,8 +250,9 @@ main {
   border: 1px solid var(--border);
   border-radius: 16px;
   padding-block: 2.5vh;
-  gap: 10px;
+  gap: 7.5px;
   max-height: 85vh;
+  overflow-y: scroll;
   transform: scale(0.3);
   animation: scaleUpProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -311,7 +310,7 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(clamp(100%/3 + 0.1%, (var(--wap) - 100vw) * 1000, 100%), 1fr));
   row-gap: 5px;
   flex-shrink: 2;
-  font-size: 0.85rem;
+  font-size: var(--font-size);
 }
 
 .app-img-pop {
@@ -324,7 +323,8 @@ main {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: var(--font-size);
+  column-gap: 5px;
 }
 
 /* Comments and Reservation Section */
@@ -340,38 +340,41 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  font-size: 1rem;
 }
 
 .app-section-ctn {
-  max-height: 10vh;
+  max-height: 7.5vh;
   overflow-y: scroll;
-  font-size: 0.85rem;
+  font-size: var(--font-size);
 }
 
 /* Comments and Reservation Form */
 
 .app-form-title {
   text-align: center;
+  font-size: 1rem;
 }
 
 .app-form-ctn {
   display: flex;
   flex-flow: column;
   gap: 7px;
+  font-size: var(--font-size);
 }
 
 .app-form-input-div {
   display: flex;
   flex-flow: column;
-  gap: 7px;
+  gap: 4px;
 }
 
 .app-form-input-reg,
 .app-form-textArea {
-  padding-inline: 7px;
-  padding-block: 5px;
+  padding-inline: 4px;
+  padding-block: 2px;
   z-index: 1;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .app-form-textArea {
@@ -396,30 +399,5 @@ main {
     flex-wrap: wrap;
     gap: 2.5%;
     justify-content: center;
-  }
-}
-
-@media (orientation: landscape) {
-  .app-item-popup-overlay {
-    padding-inline: 7.5vw 7.5vw;
-    padding-block: 20vh;
-  }
-
-  .app-item-popup {
-    display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
-    max-width: 85vw;
-    height: auto;
-  }
-
-  .app-title-header {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-around;
-  }
-
-  .app-img-pop {
-    max-height: 28vh;
-    max-width: 35vw;
   }
 }
