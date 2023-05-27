@@ -192,6 +192,11 @@ main {
   z-index: 1;
   border-radius: 10px;
   cursor: pointer;
+  max-width: 150px;
+}
+
+.app-form-input-label {
+  display: none;
 }
 
 .app-btn:hover {
@@ -208,8 +213,8 @@ main {
   top: 0;
   left: 0;
   z-index: 20;
-  padding-inline: 20vw;
-  padding-block: 7.5vh 7.5vh;
+  padding-inline: 10vw;
+  padding-block: 5vh;
   animation: fadeInProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
@@ -242,7 +247,7 @@ main {
 }
 
 .app-item-popup {
-  padding-inline: 2.5vw;
+  padding-inline: 5vw;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -251,7 +256,9 @@ main {
   border-radius: 16px;
   padding-block: 2.5vh;
   gap: 7.5px;
-  max-height: 85vh;
+  max-width: 500px;
+  max-height: 90vh;
+  margin-inline: auto;
   overflow-y: scroll;
   transform: scale(0.3);
   animation: scaleUpProject 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -375,6 +382,7 @@ main {
   padding-block: 2px;
   z-index: 1;
   border-radius: 8px;
+  max-width: 200px;
 }
 
 .app-form-textArea {
