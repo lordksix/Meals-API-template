@@ -144,7 +144,7 @@ Go to [🚀 Live Demo](#live-demo) to check it out.
 ## 🔭 Future Features <a name="future-features"></a>
 
 Future changes:
-- Reservation Options
+- Validation of Reservation dates
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -164,7 +164,7 @@ If you like this project, I encourage you to clone, fork and contribute. Our com
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse for the template for this project.
+I would like to thank Microverse and TheMealDB for the APIs for this project.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

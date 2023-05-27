@@ -4,10 +4,18 @@ import {
 } from './createElementMod.js';
 import { countTotalItem } from './CountTotalItems.js';
 
+/**
+ * Function that toogle blurness in DOM. Every element must have -modal-bg class
+ * @returns {any}
+ */
 const toggleBlur = () => {
   const body = document.querySelector('body');
   body.classList.toggle('modal-active');
 };
+/**
+ * Function that handles the closing of the popup. Implements animations that class 'out' starts
+ * @returns {any}
+ */
 
 const closePop = () => {
   toggleBlur();
@@ -17,6 +25,20 @@ const closePop = () => {
   setTimeout(() => popup.removeChild(overlay), 400);
 };
 
+/**
+ * Generator of items with information of APIs
+ * @param {string} elem name of html element to be created. The container of the element
+ * @param {object} classes object with names of classes that will be use
+ * @param {object} mealApi Oject with information to used to implement item. Reponse of the API
+ * or a mock of it
+ * @param {object} likeApi Oject with information to used to implement item (likes). Reponse of
+ * the API or a mock of it
+ * @param {Function} callback0=false function that is tricked when there is a click inside the
+ * newly created element
+ * @param {Function} callback1=false function that is tricked when comment button is click.
+ * @param {Function} callback2=false function that is tricked when reserve button is click.
+ * @returns {Node} HTML element created
+ */
 const createItem = (elem, classes, mealApi, likeApi,
   callback0 = false, callback1 = false, callback2 = false) => {
   const docFrag = document.createDocumentFragment();
@@ -49,8 +71,20 @@ const createItem = (elem, classes, mealApi, likeApi,
   if (callback0) itemElem.addEventListener('click', callback0);
   return itemElem;
 };
+/**
+ * Generator of popups with information of APIs
+ * @param {string} elem name of html element to be created. The container of the element
+ * @param {object} classes object with names of classes that will be use
+ * @param {object} mealApi Oject with information to used to implement item. Reponse of the API
+ * or a mock of it
+ * @param {Function} callback=false function that generates section with information of comments,
+ * reservertations, etc
+ * @param {Function} callback2=falsefunction that generates form to post new comment,
+ * reservertations, etc
+ * @returns {Node} HTML element created
+ */
 
-const createPopup = (elem, classes, mealApi, callback = false, callback2 = false) => {
+const createPopupHTML = (elem, classes, mealApi, callback = false, callback2 = false) => {
   const docFrag = document.createDocumentFragment();
   const elemHeader = createElementDefault('div', classes.titleHeader);
   const titlePop = createElementDefault('h2', classes.title, mealApi.strMeal);
@@ -89,48 +123,116 @@ const createCommentLine = (data, classLine) => {
   return dataP;
 };
 
-const createCommentSec = (dataArr, classes = false) => {
+const createReservationtLine = (data, classLine) => {
+  const start = data.date_start;
+  const name = data.username;
+  const end = data.date_end;
+  const dataP = createElementDefault('p', classLine, `${start} - ${end} by ${name}`);
+  return dataP;
+};
+
+/**
+ * Generator of section (sections, reservations, etc) with information of APIs
+ * @param {Array} dataArr array of oject with information to used to implement item.
+ * (sections, reservations, etc) reponse of  the API or a mock of it
+ * @param {object} classes=false object with names of classes that will be use
+ * @param {string} type string that selects the type of section it will be ('Comments',
+ * 'Reservations')
+ * @returns {Node}
+ */
+const createSection = (dataArr, classes = false, type) => {
   const docFrag = document.createDocumentFragment();
-  const titleSpan = createElementDefault('span', classes.title, 'Comments');
+  const titleSpan = createElementDefault('span', classes.title, type);
   const counterSpan = createElementDefault('span', classes.titleCounter);
   const title = createElementDefault('h3', classes.titleheader);
-  const commentCtn = createElementDefault('div', classes.postCtn);
-  let totalComment = countTotalItem(commentCtn);
+  const secCtn = createElementDefault('div', classes.postCtn);
+  let totalElements = countTotalItem(secCtn);
   title.append(titleSpan, counterSpan);
-  if (dataArr.length === 0) counterSpan.textContent = ` (${totalComment})`;
+  if (dataArr.length === 0) counterSpan.textContent = ` (${totalElements})`;
   else {
     dataArr.forEach((data) => {
-      commentCtn.appendChild(createCommentLine(data, classes.postItem));
-      totalComment = countTotalItem(commentCtn);
-      counterSpan.textContent = ` (${totalComment})`;
+      if (type === 'Comments') secCtn.appendChild(createCommentLine(data, classes.postItem));
+      else if (type === 'Reservations') secCtn.appendChild(createReservationtLine(data, classes.postItem));
+      totalElements = countTotalItem(secCtn);
+      counterSpan.textContent = ` (${totalElements})`;
     });
   }
-  docFrag.append(title, commentCtn);
+  docFrag.append(title, secCtn);
   return docFrag;
 };
 
-const createCommentForm = (id, callback, classLine = false) => {
+const createCommentInput = (classLine) => {
+  const labelComment = createLabel('comment', classLine.inputLabel, 'Comment');
+  const commentArea = createTextArea('250', classLine.textArea, 'comment', 'comment', 'Comment', true);
+  const commentDiv = createElementDefault('div', classLine.inputDiv, false, labelComment);
+  commentDiv.appendChild(commentArea);
+  return commentDiv;
+};
+const createReserveInput = (classLine) => {
   const docFrag = document.createDocumentFragment();
-  const titleForm = createElementDefault('h3', classLine.title, 'Add a comment');
-  const formComment = createElementDefault('form', classLine.formContainer);
-  formComment.setAttribute('id', id);
+  const labelDateStart = createLabel('dateCreated', classLine.inputLabel, 'Start Date');
+  const inputDateStart = createInput('date', classLine.inputReg, 'dateCreated', 'date_start', 'Start Date', true, false);
+  const dateStartDiv = createElementDefault('div', classLine.inputDiv, false, labelDateStart);
+  dateStartDiv.appendChild(inputDateStart);
+  docFrag.appendChild(dateStartDiv);
+  const labelDateEnded = createLabel('dateEnd', classLine.inputLabel, 'End Date');
+  const inputDateEnded = createInput('date', classLine.inputReg, 'dateEnd', 'date_end', 'End Date', true, false);
+  const dateEndedDiv = createElementDefault('div', classLine.inputDiv, false, labelDateEnded);
+  dateEndedDiv.appendChild(inputDateEnded);
+  docFrag.appendChild(dateEndedDiv);
+  return docFrag;
+};
+
+const createtextContent = (type) => {
+  const formTextContext = {};
+  switch (type) {
+    case 'Comments':
+      formTextContext.title = 'Add a comment';
+      formTextContext.submit = 'Submit comment';
+      break;
+    case 'Reservations':
+      formTextContext.title = 'Add a reservation';
+      formTextContext.submit = 'Submit reserve';
+      break;
+    default:
+      formTextContext.title = '';
+      formTextContext.submit = '';
+      break;
+  }
+  return formTextContext;
+};
+
+/**
+ * Description
+ * @param {string} id unique identifier of elemement
+ * @param {Function} callback=false function that is tricked when form is submited
+ * @param {object} classLine=false object with names of classes that will be use
+ * @returns {Node}
+ */
+const createForm = (id, callback = false, classLine = false, type) => {
+  const formTextContent = createtextContent(type);
+  const docFrag = document.createDocumentFragment();
+  const titleForm = createElementDefault('h3', classLine.title, formTextContent.title);
+  const formSec = createElementDefault('form', classLine.formContainer);
+  formSec.setAttribute('id', type);
+  formSec.setAttribute('data-id', id);
   const inpuItemID = createInput('text', classLine.inputHidden, 'item_id', 'item_id', false, true, true);
   inpuItemID.setAttribute('value', id);
   const labelUser = createLabel('username', classLine.inputLabel, 'Name');
   const inputUser = createInput('text', classLine.inputReg, 'username', 'username', 'Name', true, false);
   const userDiv = createElementDefault('div', classLine.inputDiv, false, labelUser);
   userDiv.appendChild(inputUser);
-  const labelComment = createLabel('comment', classLine.inputLabel, 'Comment');
-  const commentArea = createTextArea('250', classLine.textArea, 'comment', 'comment', 'Comment', true);
-  const commentDiv = createElementDefault('div', classLine.inputDiv, false, labelComment);
-  commentDiv.appendChild(commentArea);
-  const submitBtn = createButton('submit', classLine.button, 'Submit comment', 'Submit');
-  formComment.append(inpuItemID, userDiv, commentDiv, submitBtn);
-  formComment.addEventListener('submit', callback);
-  docFrag.append(titleForm, formComment);
+  let uniqueInput;
+  if (type === 'Comments') uniqueInput = createCommentInput(classLine);
+  else if (type === 'Reservations') uniqueInput = createReserveInput(classLine);
+  else uniqueInput = '';
+  const submitBtn = createButton('submit', classLine.button, formTextContent.submit, 'Submit');
+  formSec.append(inpuItemID, userDiv, uniqueInput, submitBtn);
+  if (callback) formSec.addEventListener('submit', callback);
+  docFrag.append(titleForm, formSec);
   return docFrag;
 };
 
 export {
-  createItem, createPopup, createCommentSec, createCommentForm, toggleBlur,
+  createItem, createPopupHTML, createSection, createForm, toggleBlur,
 };

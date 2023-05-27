@@ -323,7 +323,8 @@ main {
 .app-img-pop {
   max-height: 35vh;
   margin-inline: auto;
-  max-width: 28vw;
+  width: 28vw;
+  max-width: 100%;
 }
 
 .app-title-header {
@@ -370,12 +371,6 @@ main {
   font-size: var(--font-size);
 }
 
-.app-form-input-div {
-  display: flex;
-  flex-flow: column;
-  gap: 4px;
-}
-
 .app-form-input-reg,
 .app-form-textArea {
   padding-inline: 4px;
@@ -396,8 +391,6 @@ main {
   }
 
   .app-form-input-div {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
     padding-inline: 0 5%;
   }
 
