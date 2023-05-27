@@ -1,11 +1,9 @@
 import { handleFormSubmit } from './PostAPI.js';
-import {
-  createPopup, toggleBlur, createCommentSec, createCommentForm,
-} from './ListItemMod.js';
+import { createSection } from './ListItemMod.js';
 import { createApiInvURL, createApiInvQueryURL } from './createURLAPI.js';
 import { handleGETAPI } from './GetAPI.js';
 import {
-  involvementAPIUri, popUpClasses, popUpSectionClasses, popUpFormClasses,
+  involvementAPIUri, popUpSectionClasses,
 } from './const.js';
 
 const getCommentResponse = async (idItem) => {
@@ -31,19 +29,9 @@ const postComment = async (event) => {
   await handleFormSubmit(event, postURL);
   const newComments = await getCommentArray(idMeal);
   commentCtn.innerHTML = '';
-  commentCtn.appendChild(createCommentSec(newComments, popUpSectionClasses));
-};
-
-const createCommentPopUp = async (mealAPi) => {
-  const comment = await getCommentArray(mealAPi.idMeal);
-  toggleBlur();
-  const popUP = createPopup('div', popUpClasses, mealAPi, createCommentSec(comment, popUpSectionClasses),
-    createCommentForm(mealAPi.idMeal, postComment, popUpFormClasses));
-  const popupDiv = document.getElementById('popup');
-  popupDiv.innerHTML = '';
-  popupDiv.appendChild(popUP);
+  commentCtn.appendChild(createSection(newComments, popUpSectionClasses, 'Comments'));
 };
 
 export {
-  getCommentResponse, createCommentPopUp,
+  postComment, getCommentArray,
 };
