@@ -1,5 +1,5 @@
 import { createItem } from './ListItemMod.js';
-import { itemClasses, xlink } from './const.js';
+import { itemClasses } from './const.js';
 import { createLike, findLikes, getLikesResponse } from './APILikeHandling.js';
 import { getMealsIDResponse, getMealsCatResponse } from './APIMealsHandling.js';
 import { createCommentPopUp } from './APICommentsHandling.js';
@@ -20,7 +20,7 @@ const appendListItems = async (dataArr, invArr, ID) => {
   appCtn.innerHTML = '';
   dataArr.forEach(async (data) => {
     const mealData = await getMealsIDResponse(data.idMeal);
-    const mealFrag = createItem('li', itemClasses, mealData.meals[0], xlink, await findLikes(mealData.meals[0].idMeal, invArr),
+    const mealFrag = createItem('li', itemClasses, mealData.meals[0], await findLikes(mealData.meals[0].idMeal, invArr),
       createLike, () => createCommentPopUp(mealData.meals[0]));
     appCtn.appendChild(mealFrag);
     const total = countTotalItem(appCtn);
@@ -38,5 +38,5 @@ const printListItems = async (event) => {
 };
 
 export {
-  printListItems, xlink,
+  printListItems, appendResponseFeedback,
 };

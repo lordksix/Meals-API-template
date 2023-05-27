@@ -17,26 +17,32 @@ const closePop = () => {
   setTimeout(() => popup.removeChild(overlay), 400);
 };
 
-const createItem = (elem, classes, mealApi, xlink, likeApi,
-  callback0 = false, callback1 = false) => {
+const createItem = (elem, classes, mealApi, likeApi,
+  callback0 = false, callback1 = false, callback2 = false) => {
   const docFrag = document.createDocumentFragment();
   docFrag.appendChild(createImg(classes.image, mealApi.strMeal, mealApi.strMealThumb));
   const elemHeader = createElementDefault('div', classes.titleHeader);
   const titleImg = createElementDefault('p', classes.likesCtn, mealApi.strMeal);
   elemHeader.appendChild(titleImg);
   const elemLikes = createElementDefault('div', classes.likesIcon);
-  const elemLikesSVG = createNS(xlink.regular);
-  const elemLikesRedSVG = createNS(xlink.red);
+  const elemLikesSVG = createNS(classes.regular);
+  const elemLikesRedSVG = createNS(classes.red);
   elemLikesRedSVG.classList.add('hidden');
   const elemLikesP = createElementDefault('p', classes.likesText, `${likeApi} like${likeApi > 1 ? 's' : ''}`);
   elemLikes.append(elemLikesSVG, elemLikesRedSVG, elemLikesP);
   elemHeader.appendChild(elemLikes);
   docFrag.appendChild(elemHeader);
   const btnDiv = createElementDefault('div', classes.btnCtn);
-  const commentBtn = createButton('button', classes.btnComment, 'Go to Comments', 'Comments');
-  if (callback1) commentBtn.addEventListener('click', callback1);
-  btnDiv.appendChild(commentBtn);
-  btnDiv.appendChild(createButton('button', classes.btnReserve, 'Go to Reservations', 'Reservations'));
+  if (callback1) {
+    const commentBtn = createButton('button', classes.btnComment, 'Go to Comments', 'Comments');
+    commentBtn.addEventListener('click', callback1);
+    btnDiv.appendChild(commentBtn);
+  }
+  if (callback2) {
+    const reserveBtn = createButton('button', classes.btnReserve, 'Go to Reservations', 'Reservations');
+    reserveBtn.addEventListener('click', callback2);
+    btnDiv.appendChild(reserveBtn);
+  }
   docFrag.appendChild(btnDiv);
   const itemElem = createElementDefault(elem, classes.container, false, docFrag);
   itemElem.setAttribute('data-id', mealApi.idMeal);

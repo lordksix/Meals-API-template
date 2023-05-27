@@ -8,6 +8,8 @@ const itemClasses = {
   btnCtn: 'app-div-btn',
   btnComment: ['app-btn', 'comment'],
   btnReserve: ['app-btn', 'reservation'],
+  regular: './asset/resource/icons.svg#heart-like',
+  red: './asset/resource/icons.svg#heart-like-red',
 };
 
 const popUpClasses = {
@@ -44,11 +46,6 @@ const popUpFormClasses = {
   button: 'app-btn',
 };
 
-const xlink = {
-  regular: './asset/resource/icons.svg#heart-like',
-  red: './asset/resource/icons.svg#heart-like-red',
-};
-
 const meaAPIUri = {
   baseFilter: 'https://www.themealdb.com/api/json/v1/1/filter.php?',
   baseLookUp: 'https://www.themealdb.com/api/json/v1/1/lookup.php?',
@@ -65,6 +62,6 @@ const involvementAPIUri = {
 };
 
 export {
-  xlink, popUpSectionClasses, itemClasses, popUpClasses, popUpFormClasses,
+  popUpSectionClasses, itemClasses, popUpClasses, popUpFormClasses,
   meaAPIUri, involvementAPIUri,
 };
